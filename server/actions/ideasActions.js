@@ -26,27 +26,37 @@ const postNewIdea = (req, res, next) => {
 const getOneIdea = (req, res, next) => {
   const id = req.params.ideaId;
   const idea = getFromDatabaseById('ideas', id);
-  if (!idea) res.status(404).send();
-  req.payload = idea;
-  next();
+  if (!idea) {
+    res.status(404).send();
+  } else {
+    req.payload = idea;
+    next();
+  }
+  
 }
 
 // PUT one idea
 const updateOneIdea = (req, res, next) => {
   const proposedUpdate = req.body;
   const updatedIdea = updateInstanceInDatabase('ideas', proposedUpdate);
-  if (!updatedIdea) res.status(404).send();
-  req.payload = updatedIdea;
-  next();
+  if (!updatedIdea) {
+    res.status(404).send();
+  } else {
+    req.payload = updatedIdea;
+    next();
+  } 
 }
 
 // DELETE one idea
 const deleteOneIdea = (req, res, next) => {
   const id = req.params.ideaId;
   const deleted = deleteFromDatabasebyId('ideas', id);
-  if (!deleted) res.status(404).send();
-  res.status(204);
-  next();
+  if (!deleted) {
+    res.status(404).send();
+  } else {
+    res.status(204);
+    next();
+  }
 }
 
 module.exports = {
