@@ -4,7 +4,6 @@ const meetingsRouter = express.Router();
 
 // Require in actions
 const {
-  validateBody,
   sendResponse,
 } = require('../actions/genericActions');
 
